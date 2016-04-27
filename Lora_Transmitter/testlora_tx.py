@@ -1,50 +1,84 @@
+'''
+* LoRa is a spread-spectrum modulation technique which allows sending data at extremely low data-rates to extremely 
+  long ranges.
+* The LoRa Mote is a demo board that showcases the Microchip Low-Power Long Range LoRa Technology Transceiver Module.
+* The LoRa Mote provides access to the module through UART/USB Serial communications and supports connection points to
+  all GPIO-controlled module pins.
+* The default settings for the UART interface are 57600 bps, 8 bits, no parity, 1 Stop bit, no flow control
+* The baud rate can be changed by triggering the auto-baud detection sequence of the module. To do this, the host system
+  needs to transmit to the module a break condition followed by a 0x55 character at the new baud rate
+'''
 import serial
 import time
 import sys
 import time
 import random
 
+'''
+    Send configuration parameters to the lora module
+'''
 def send_command(cmd):
 	port.write(cmd)
 	time.sleep(0.1)
 	port.flush()
+	# Returns invalid_param if the command is not valid/failed, then resend the command
 	response = port.readline()
 	print ('\n'+cmd + response.strip())
+
 	if (response.strip() != 'ok'):
 		port.write(cmd)
 		time.sleep(0.1)
 		port.flush()
+		# Returns invalid_param if the command is not valid/failed, then exit
 		response = port.readline()
         	print ('\n'+cmd + response.strip()) 
+
         	if (response.strip() != 'ok'):
 			print '\nLora is not responding, please restart'
 			print '\nProgram terminated'
 			sys.exit(0)			
 
+'''
+    Setting the Radio configuration parameters
+'''
 def init_config():
-	send_command('radio set mod lora\r\n')
-	send_command('radio set freq 868000000\r\n')
-	send_command('radio set pwr 14\r\n')
-	send_command('radio set sf sf12\r\n')
-	send_command('radio set afcbw 125\r\n')
-	send_command('radio set rxbw 250\r\n')
-	send_command('radio set fdev 5000\r\n')
-	send_command('radio set prlen 8\r\n')
-	send_command('radio set crc on\r\n')
-	send_command('radio set cr 4/8\r\n')
-	send_command('radio set wdt 0\r\n')
-	send_command('radio set sync 12\r\n')
-	send_command('radio set bw 250\r\n')
+	send_command('radio set mod lora\r\n') # Set the module Modulation mode, either lora or FSK
+	send_command('radio set freq 868000000\r\n') # Set the current operation frequency for the radio
+	send_command('radio set pwr 14\r\n') # Set the output power level used by the radio during transmission
+	send_command('radio set sf sf12\r\n') # Set the requested spreading factor (SF) to be used during transmission
+	send_command('radio set afcbw 125\r\n') # Set the value used by the automatic frequency correction bandwidth for receiving/transmitting
+	send_command('radio set rxbw 250\r\n') # Set the operational receive bandwidth
+	send_command('radio set fdev 5000\r\n') # Set the frequency deviation allowed by the end device
+	send_command('radio set prlen 8\r\n') # Set the preamble length used during transmissions
+	send_command('radio set crc on\r\n') # Set if a CRC header is to be used
+	send_command('radio set cr 4/8\r\n') # Set the coding rate used by the radio
+	send_command('radio set wdt 0\r\n') # Set the time-out limit for the radio Watchdog Timer
+	send_command('radio set sync 12\r\n') # Set the sync word used
+	send_command('radio set bw 250\r\n') # Set the value used for the radio bandwidth
 	print '\nLora configuration is done.'
 
+'''
+    Check the current status of the module
+    and set radio receiver wdt timer to 90 secs
+'''
 def lora_init():
    	port.write('mac get status\r\n')                             
         time.sleep(0.1)                               
-        port.flush()                                
-        response = port.readline()                 
+        port.flush()    
+	# Response: 2-byte hexadecimal number representing the current status of the module                                                           
+        response = port.readline()    
         print ('\n'+'mac get status, ' + response.strip()) 
-	print ('Lora initialization is done.\n')   		
+	print ('\nLora initialization is done.')   		
 
+'''
+    Main program starts
+
+    optional flags:
+
+	--config - sets the Radio configuration parameters (only first-time needed)
+	
+	--pre - checks the current status of the module
+'''
 def main():
 	if(len(sys.argv) > 1):
 		if(sys.argv[1] == '--config'):
@@ -62,10 +96,14 @@ def main():
 
 	else:
 		try:
+			# mac pause : pauses the LoRaWAN stack functionality to allow transceiver (radio) configuration
 			port.write('mac pause\r\n')
 			time.sleep(0.1)
             		port.flush()
             		print("waiting for ack (mac pause)...")
+
+			# mac pause response : 0 – 4294967295 (decimal number representing the number of millis the mac can be paused)
+			# Returns invalid_param if the command is not valid/failed, then try again
             		response = port.readline()
             		print('\nmac pause ack, ' + response)
 			try:
@@ -75,7 +113,9 @@ def main():
 				port.write('mac pause\r\n')                      
                         	time.sleep(0.1)                                    
                         	port.flush()                                     
-                        	print("waiting for ack (mac pause)...")            
+                        	print("waiting for ack (mac pause)...")     
+
+				# Returns invalid_param if the command is not valid/failed, then exit                  
                         	response = port.readline()                         
                         	print('\nmac pause ack, ' + response)  
 				try:                                             
@@ -86,21 +126,33 @@ def main():
 					print '\nProgram terminated'
 					sys.exit(0)
 			
+			# Generate a random number (data) between 1 and 1000 for data transmission
 			random_num = random.randint(1,1000)
+
+			# radio tx : hexadecimal value representing the data to be transmitted, from 0 to 255 
+			# bytes for LoRa modulation and from 0 to 64 bytes for FSK modulation
                 	port.write('radio tx '+ str(random_num) + '\r\n\r\n')
 			time.sleep(0.1)
             		port.flush()
 	    		print('Data sent, '+ str(random_num))
             		print('waiting for ack (data)...')
+
+			# Response: this command may reply with two responses. 
+			# The first response will be received immediately after entering the command. 
+			# If the command is valid (ok reply received), a second reply will be received
+ 			# after the effective transmission
             		response_bef = port.readline()
 	    		response_aft = port.readline()
             		print('\nimmid resp, ' + response_bef.strip())
 	    		print ('\nafter resp, ' + response_aft.strip())
 
+			# mac resume : resumes LoRaWAN stack functionality, in order to continue normal 
+			# functionality after being paused
 			port.write('mac resume\r\n')      
                         time.sleep(0.1)                                  
                         port.flush()                                     
-                        print('\nwaiting for ack (mac resume)...')                  
+                        print('\nwaiting for ack (mac resume)...')   
+			# mac resume response : ok                            
                         resp = port.readline()   
 			print ('mac resume resp, '+resp.strip())
 			port.close()
@@ -124,6 +176,7 @@ if __name__ == "__main__":
 	print '\nLora data transmission sequence initiated'
 	print '-------------------------------------------------------------'
 
+	# The default settings for the UART/USB Serial interface are 57600 bps, 8 bits, no parity, 1 Stop bit, no flow control
 	try:                       
         	port=serial.Serial(  
                     "/dev/ttyACM0",           
