@@ -1,3 +1,13 @@
+'''
+* LoRa is a spread-spectrum modulation technique which allows sending data at extremely low data-rates to extremely 
+  long ranges.
+* The LoRa Mote is a demo board that showcases the Microchip Low-Power Long Range LoRa Technology Transceiver Module.
+* The LoRa Mote provides access to the module through UART/USB Serial communications and supports connection points to
+  all GPIO-controlled module pins.
+* The default settings for the UART interface are 57600 bps, 8 bits, no parity, 1 Stop bit, no flow control
+* The baud rate can be changed by triggering the auto-baud detection sequence of the module. To do this, the host system
+  needs to transmit to the module a break condition followed by a 0x55 character at the new baud rate
+'''
 import serial
 import time
 import sys
@@ -22,7 +32,7 @@ def send_command(cmd):
 			sys.exit(0)			
 
 def init_config():
-	send_command('radio set mod lora\r\n')
+	send_command('radio set mod lora\r\n') #Set the module Modulation mode, either lora or FSK
 	send_command('radio set freq 868000000\r\n')
 	send_command('radio set pwr 14\r\n')
 	send_command('radio set sf sf12\r\n')
