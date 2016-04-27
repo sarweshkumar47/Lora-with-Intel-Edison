@@ -26,6 +26,7 @@ echo "src/gz core2-32 http://repo.opkg.net/edison/repo/core2-32" >> /etc/opkg/ba
 # Update opkg list and install Pip
 opkg update
 opkg install python-pip
+# This module encapsulates the access for the serial port
 pip install pyserial
 
 ######################################################################
