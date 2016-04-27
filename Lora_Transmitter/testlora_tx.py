@@ -17,10 +17,9 @@ def send_command(cmd):
 		response = port.readline()
         	print ('\n'+cmd + response.strip()) 
         	if (response.strip() != 'ok'):
-			print 'Invalid response'
-			print 'Program terminated'
+			print '\nLora is not responding, please restart'
+			print '\nProgram terminated'
 			sys.exit(0)			
-
 
 def init_config():
 	send_command('radio set mod lora\r\n')
@@ -36,15 +35,15 @@ def init_config():
 	send_command('radio set wdt 0\r\n')
 	send_command('radio set sync 12\r\n')
 	send_command('radio set bw 250\r\n')
-	print 'Lora configuration done.\n'
+	print '\nLora configuration is done.'
 
-def clearbuffer():
+def lora_init():
    	port.write('mac get status\r\n')                             
         time.sleep(0.1)                               
         port.flush()                                
         response = port.readline()                 
         print ('\n'+'mac get status, ' + response.strip()) 
-	print ('Lora buffer is cleared\n')   		
+	print ('Lora initialization is done.\n')   		
 
 def main():
 	if(len(sys.argv) > 1):
@@ -57,7 +56,7 @@ def main():
 			sys.exit(0)
 
 		else:
-			print '\nUnknown arguments passed to the program'
+			print '\nUnknown argument passed to the program'
 			print '\nProgram terminated'
 			sys.exit(0)
 
@@ -66,7 +65,7 @@ def main():
 			port.write('mac pause\r\n')
 			time.sleep(0.1)
             		port.flush()
-            		print("waiting for ack mac pause...")
+            		print("waiting for ack (mac pause)...")
             		response = port.readline()
             		print('\nmac pause ack, ' + response)
 			try:
@@ -76,14 +75,14 @@ def main():
 				port.write('mac pause\r\n')                      
                         	time.sleep(0.1)                                    
                         	port.flush()                                     
-                        	print("waiting for ack mac pause...")            
+                        	print("waiting for ack (mac pause)...")            
                         	response = port.readline()                         
                         	print('\nmac pause ack, ' + response)  
 				try:                                             
                                 	if(int(response)):                       
                                         	pass                             
                         	except:       
-					print '\nLora is not ready'
+					print '\nLora is not responding, please restart'
 					print '\nProgram terminated'
 					sys.exit(0)
 			
@@ -92,7 +91,7 @@ def main():
 			time.sleep(0.1)
             		port.flush()
 	    		print('Data sent, '+ str(random_num))
-            		print('waiting for ack...')
+            		print('waiting for ack (data)...')
             		response_bef = port.readline()
 	    		response_aft = port.readline()
             		print('\nimmid resp, ' + response_bef.strip())
@@ -101,28 +100,29 @@ def main():
 			port.write('mac resume\r\n')      
                         time.sleep(0.1)                                  
                         port.flush()                                     
-                        print('waiting for ack mac resume...')                  
+                        print('\nwaiting for ack (mac resume)...')                  
                         resp = port.readline()   
 			print ('mac resume resp, '+resp.strip())
 			port.close()
 
         	except KeyboardInterrupt:
-            		print "Keyboard Interrupt"
+            		print '\nKeyboard Interrupt'
+                	print '\nProgram terminated'                                 
 	    		port.close()
 
         	except serial.SerialException:                                              
                 	print '\nDevice not found'                                   
                 	print '\nProgram terminated'                                 
 			port.close()
-                	sys.exit(0) 
   
          	except:
-	        	print "Exception"
+	        	print '\nException'
+                	print '\nProgram terminated'                                 
 	        	port.close()
 
 if __name__ == "__main__":
-	print "Lora data transmission sequence initiated"
-	print "-------------------------------------------------------------"
+	print '\nLora data transmission sequence initiated'
+	print '-------------------------------------------------------------'
 
 	try:                       
         	port=serial.Serial(  
