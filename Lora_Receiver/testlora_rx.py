@@ -18,8 +18,8 @@ def send_command(cmd):
 		response = port.readline()
         	print ('\n'+cmd + response.strip()) 
         	if (response.strip() != 'ok'):
-			print 'Lora is not responding, please restart'
-			print 'Program terminated'
+			print '\nLora is not responding, please restart'
+			print '\nProgram terminated'
 			sys.exit(0)			
 
 def init_config():
@@ -36,7 +36,7 @@ def init_config():
 	send_command('radio set wdt 0\r\n')
 	send_command('radio set sync 12\r\n')
 	send_command('radio set bw 250\r\n')
-	print 'Lora configuration done.\n'
+	print 'Lora configuration is done.\n'
 
 def clearbuffer():
    	port.write('mac get status\r\n')                             
@@ -45,7 +45,7 @@ def clearbuffer():
         response = port.readline()                    
         print ('\n'+'mac get status, ' + response.strip())
 	send_command('radio set wdt 0\r\n')
-	print ('Lora buffer is cleared\n')   		
+	print ('Lora initialization is done.\n')   		
 
 def main():
 	if(len(sys.argv) > 1):
