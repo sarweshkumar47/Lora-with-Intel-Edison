@@ -31,7 +31,40 @@ The Mote includes light and temperature sensors, which can be transmitted either
 To install pySerial and its dependencies, execute install_serial.sh script
 
       ./install_serial.sh
+
+##Receiver
+####First-time LoRa configuration
+On Edison, execute testlora_rx.py program with --config flag and Edison sends radio commands to the LoRa module. Only one-time this step is required.
+
+      python testlora_rx.py --config
+
+####Test the Receiver
+
+On Edison, execute testlora_rx.py program with --pre flag to set the LoRa Watchdog Timer to 90 secs (this is the Receiver timeout/waiting-time condition and this can be changed). 
       
+      python testlora_rx.py --pre
+      
+On Edison, execute testlora_rx.py program to put the LoRa into reception mode. Once LoRa enters into data reception mode, it waits for 90 secs for the data. If the LoRa, doesnot receive any data within the specified time, it throws **radio_error**, after 90 secs.
+
+      python testlora_rx.py
+
+
+##Transmitter
+####First-time LoRa configuration
+On Edison, execute testlora_tx.py program with --config flag and Edison sends radio commands to the LoRa module. Only one-time this step is required.
+
+      python testlora_tx.py --config
+
+####Test the transmitter
+
+On Edison, execute testlora_rx.py program with --pre flag to clear the buffer and make sure it is in working state. 
+      
+      python testlora_rx.py --pre
+      
+On Edison, execute testlora_tx.py program to send a random between 1 and 1000 to the receiver.
+
+      python testlora_rx.py
+
 
 
 
