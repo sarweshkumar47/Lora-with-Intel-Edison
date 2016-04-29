@@ -6,6 +6,17 @@ LoRa Mote is a LoRaWAN Class A end-device based on RN2483 LoRa modem. As a stand
 
 The Mote includes light and temperature sensors, which can be transmitted either on a fixed schedule or by a button-press. An OLED display provides connection status, sensor values and acknowledgements. A standard USB interface is provided for connection to a host computer, providing a bridge to the UART interface of the RN2483 modem.
 
+##Experiment setup
+
+                                                    Lora Modulation
+                              LoRa Mote  ---------------------------------------  LoRa Mote
+                                  |                                                   |
+                     (USB Serial) |                                                   | (USB Serial)
+                                  |                                                   |
+                                Edison                                              Edison
+                             (Controller)                                        (Controller)
+                             
+                             
 ##Hardware
 * [Intel Edison - 2](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
 * [LoRa Mote - 2](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=dm164138#utm_medium=Press-Release&utm_term=LoRa%20Certification%20&utm_content=WPD&utm_campaign=868MHz)
