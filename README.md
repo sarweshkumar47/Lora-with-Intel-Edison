@@ -44,7 +44,7 @@ On Edison, execute testlora_rx.py program with --pre flag to set the LoRa Watchd
       
       python testlora_rx.py --pre
       
-On Edison, execute testlora_rx.py program to put the LoRa into reception mode. Once LoRa enters into data reception mode, it waits for 90 secs for the data. If the LoRa, doesnot receive any data within the specified time, it throws **radio_error**, after 90 secs.
+On Edison, execute testlora_rx.py program to put the LoRa into reception mode. Once LoRa enters into data reception mode, it waits for 90 secs for the data. If the LoRa, doesnot receive any data within the specified time, it throws *radio_error*, after 90 secs.
 
       python testlora_rx.py
 
@@ -70,12 +70,13 @@ All of the RN2483 module’s settings and commands are transmitted over UART usi
 
 The default settings for the UART interface are 57600 bps, 8 bits, no parity, 1 stop bit, no flow control. The baud rate can be changed by triggering the auto-baud detection sequence of the module. To do this, the host system needs to send a break condition followed by a 0x55 character at the new baud rate to the module. The auto-baud detection mechanism can also be triggered during Sleep to wake the module up before the predetermined time has expired. 
 
-
-
-
-#####Note:
+*#####Note:*
 A break condition is signaled to the module by keeping the UART_RX pin low for longer than the time to transmit a complete character.
 
+##Reference
+* [http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=dm164138#utm_medium=Press-Release&utm_term=LoRa%20Certification%20&utm_content=WPD&utm_campaign=868MHz](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=dm164138#utm_medium=Press-Release&utm_term=LoRa%20Certification%20&utm_content=WPD&utm_campaign=868MHz)
+* [http://ww1.microchip.com/downloads/en/DeviceDoc/40001808A.pdf](http://ww1.microchip.com/downloads/en/DeviceDoc/40001808A.pdf)
+* [http://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf](http://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf)
 
 
 
