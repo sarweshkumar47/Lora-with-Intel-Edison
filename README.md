@@ -2,7 +2,7 @@
 Interfacing Lora module with Intel Edison
 
 ##LoRa
-LoRa Mote is a LoRaWAN Class A end-device based on RN2483 LoRa modem. As a standalone battery-powered node, the Mote provides a convenient platform to quickly demonstrate the long-range capabilities of the modem, as well as to verify inter-operability when connecting to LoRaWAN gateways and infrastructure.
+LoRa Mote is a LoRaWAN Class A end-device based on RN2483 LoRa modem with a range of more than 15 km (suburban). As a standalone battery-powered node, the Mote provides a convenient platform to quickly demonstrate the long-range capabilities of the modem, as well as to verify inter-operability when connecting to LoRaWAN gateways and infrastructure.
 
 The Mote includes light and temperature sensors, which can be transmitted either on a fixed schedule or by a button-press. An OLED display provides connection status, sensor values and acknowledgements. A standard USB interface is provided for connection to a host computer, providing a bridge to the UART interface of the RN2483 modem.
 
@@ -75,6 +75,7 @@ The default settings for the UART interface are 57600 bps, 8 bits, no parity, 1 
 A break condition is signaled to the module by keeping the UART_RX pin low for longer than the time to transmit a complete character.
 
 ##Reference
+* [http://ww1.microchip.com/downloads/en/DeviceDoc/70005219A.pdf](http://ww1.microchip.com/downloads/en/DeviceDoc/70005219A.pdf)
 * [http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=dm164138#utm_medium=Press-Release&utm_term=LoRa%20Certification%20&utm_content=WPD&utm_campaign=868MHz](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=dm164138#utm_medium=Press-Release&utm_term=LoRa%20Certification%20&utm_content=WPD&utm_campaign=868MHz)
 * [http://ww1.microchip.com/downloads/en/DeviceDoc/40001808A.pdf](http://ww1.microchip.com/downloads/en/DeviceDoc/40001808A.pdf)
 * [http://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf](http://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf)
