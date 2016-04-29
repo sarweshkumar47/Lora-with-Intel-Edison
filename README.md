@@ -8,7 +8,7 @@ The Mote includes light and temperature sensors, which can be transmitted either
 
 ##Experiment setup
 
-                                                    Lora Modulation
+                            (Transmitter)             Lora Modulation            (Receiver)
                               LoRa Mote  ---------------------------------------  LoRa Mote
                                   |                                                   |
                      (USB Serial) |                                                   | (USB Serial)
@@ -16,7 +16,9 @@ The Mote includes light and temperature sensors, which can be transmitted either
                                 Edison                                              Edison
                              (Controller)                                        (Controller)
                              
-                             
+* Connect LoRa Mote to Edison via standard USB interface
+* One LoRa-Edison pair will be a transmitter and other one will be a receiver
+
 ##Hardware
 * [Intel Edison - 2](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
 * [LoRa Mote - 2](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=dm164138#utm_medium=Press-Release&utm_term=LoRa%20Certification%20&utm_content=WPD&utm_campaign=868MHz)
