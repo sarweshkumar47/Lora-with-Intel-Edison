@@ -26,9 +26,11 @@ The Mote includes light and temperature sensors, which can be transmitted either
 
 * pySerial
 
-To install pySerial and its depencies, execute install_serial.sh script
+To install pySerial and its dependencies, execute install_serial.sh script
 
       ./install_serial.sh
+      
+
 
 
 
