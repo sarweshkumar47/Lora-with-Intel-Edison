@@ -72,6 +72,7 @@ The default settings for the UART interface are 57600 bps, 8 bits, no parity, 1 
 
 
 
+
 #####Note:
 A break condition is signaled to the module by keeping the UART_RX pin low for longer than the time to transmit a complete character.
 
