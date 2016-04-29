@@ -65,7 +65,13 @@ On Edison, execute testlora_tx.py program to send the data, it transmits a rando
 
       python testlora_tx.py
 
+##Setting the baud rate of LoRa
+All of the RN2483 module’s settings and commands are transmitted over UART using the standard ASCII interface. All commands need to be terminated with <CR><LF> and any replies they return will also be terminated by the same sequence.
 
+The default settings for the UART interface are 57600 bps, 8 bits, no parity, 1 stop bit, no flow control. The baud rate can be changed by triggering the auto-baud detection sequence of the module. To do this, the host system needs to send a break condition followed by a 0x55 character at the new baud rate to the module. The auto-baud detection mechanism can also be triggered during Sleep to wake the module up before the predetermined time has expired. 
+
+######Note:
+A break condition is signaled to the module by keeping the UART_RX pin low for longer than the time to transmit a complete character.
 
 
 
