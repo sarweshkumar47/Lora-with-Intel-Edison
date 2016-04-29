@@ -1,5 +1,5 @@
-# LoRa-with-Intel-Edison
-Interfacing Lora module with Intel Edison
+#LoRa-with-Intel-Edison
+###Interfacing LoRa module with Intel Edison
 
 ##LoRa
 LoRa Mote is a LoRaWAN Class A end-device based on RN2483 LoRa modem with a range of more than 15 km (suburban). As a standalone battery-powered node, the Mote provides a convenient platform to quickly demonstrate the long-range capabilities of the modem, as well as to verify inter-operability when connecting to LoRaWAN gateways and infrastructure.
