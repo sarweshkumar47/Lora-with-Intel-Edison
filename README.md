@@ -57,7 +57,7 @@ On Edison, execute testlora_tx.py program with --config flag and Edison sends ra
 
 ####Test the transmitter
 
-On Edison, execute testlora_rx.py program with --pre flag to clear the buffer and make sure it is in working state. 
+On Edison, execute testlora_tx.py program with --pre flag to clear the buffer and make sure it is in working state. 
       
       python testlora_tx.py --pre
       
