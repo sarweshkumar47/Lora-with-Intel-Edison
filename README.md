@@ -9,8 +9,7 @@ The Mote includes light and temperature sensors, which can be transmitted either
 
 
 <p align="center">
-<img src="https://github.com/sarweshkumar47/Lora-with-Intel-Edison/blob/master/Images/lora.jpg" alt="lora"
-style="width:500px;">
+<img src="https://github.com/sarweshkumar47/Lora-with-Intel-Edison/blob/master/Images/lora.jpg" alt="lora";>
 </p>
 
 
