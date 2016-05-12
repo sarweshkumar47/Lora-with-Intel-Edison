@@ -39,40 +39,54 @@ The Mote includes light and temperature sensors, which can be transmitted either
 
 To install pySerial and its dependencies, execute install_serial.sh script
 
-      ./install_serial.sh
+```bash
+  ./install_serial.sh
+```
 
 ##Receiver
 ####First-time LoRa configuration
 On Edison, execute testlora_rx.py program with --config flag and Edison sends radio commands to the LoRa module. Only one-time this step is required.
 
-      python testlora_rx.py --config
+```bash
+  python testlora_rx.py --config
+```
 
 ####Test the Receiver
 
 On Edison, execute testlora_rx.py program with --pre flag to set the LoRa Watchdog Timer to 90 secs (this is the Receiver timeout/waiting-time condition and this can be changed). 
-      
-      python testlora_rx.py --pre
+ 
+```bash      
+  python testlora_rx.py --pre
+```
       
 On Edison, execute testlora_rx.py program to put the LoRa into reception mode. Once LoRa enters into data reception mode, it waits for 90 secs for the data. If the LoRa, doesnot receive any data within the specified time, it throws *radio_error*, after 90 secs.
 
-      python testlora_rx.py
+```bash
+  python testlora_rx.py
+```
 
 
 ##Transmitter
 ####First-time LoRa configuration
 On Edison, execute testlora_tx.py program with --config flag and Edison sends radio commands to the LoRa module. Only one-time this step is required.
 
-      python testlora_tx.py --config
+```bash
+  python testlora_tx.py --config
+```
 
 ####Test the transmitter
 
 On Edison, execute testlora_tx.py program with --pre flag to clear the buffer, and to make sure it is in working state. 
-      
-      python testlora_tx.py --pre
+ 
+```bash     
+  python testlora_tx.py --pre
+```
       
 On Edison, execute testlora_tx.py program to send the data, it transmits a random number between 1 and 1000 to the other end.
 
-      python testlora_tx.py
+```bash
+  python testlora_tx.py
+```
 
 ##Setting the baud rate of LoRa
 All of the RN2483 module’s settings and commands are transmitted over UART using the standard ASCII interface. All commands need to be terminated with <CR><LF> and any replies they return will also be terminated by the same sequence.
