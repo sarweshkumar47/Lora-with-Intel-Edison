@@ -7,6 +7,11 @@ LoRa Mote is a LoRaWAN Class A end-device based on RN2483 LoRa modem with a rang
 The Mote includes light and temperature sensors, which can be transmitted either on a fixed schedule or by a button-press. An OLED display provides connection status, sensor values and acknowledgements. A standard USB interface is provided for connection to a host computer, providing a bridge to the UART interface of the RN2483 modem.
 
 
+<p align="center">
+<img src="https://github.com/sarweshkumar47/Lora-with-Intel-Edison/blob/master/Images/lora.jpg" alt="lora" style="width:304px;height:458px";>
+</p>
+
+
 
 ##Experiment setup
 
@@ -20,6 +25,20 @@ The Mote includes light and temperature sensors, which can be transmitted either
                              
 * Connect LoRa Mote to the USB host port of Edison
 * One LoRa-Edison pair will be a transmitter and other one will be a receiver
+
+
+
+
+<p align="center">
+<img src="https://github.com/sarweshkumar47/Lora-with-Intel-Edison/blob/master/Images/loraedison.jpg" alt="loraedison" style="width:304px;height:458px";>
+</p>
+
+
+
+
+
+
+
 
 ##Hardware
 * [Intel Edison - 2](http://www.intel.com/content/www/us/en/do-it-yourself/edison.html)
