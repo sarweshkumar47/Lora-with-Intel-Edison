@@ -9,6 +9,7 @@ The Mote includes light and temperature sensors, which can be transmitted either
 <p align="center">
 <img src="https://github.com/sarweshkumar47/Lora-with-Intel-Edison/blob/master/Images/lora.jpg" alt="lora";>
 </p>
+Pavan
   
 ##Experiment setup
 
@@ -88,5 +89,6 @@ A break condition is signaled to the module by keeping the UART_RX pin low for l
 * [http://ww1.microchip.com/downloads/en/DeviceDoc/40001808A.pdf](http://ww1.microchip.com/downloads/en/DeviceDoc/40001808A.pdf)
 * [http://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf](http://ww1.microchip.com/downloads/en/DeviceDoc/40001784B.pdf)
 
-
+##Image Credits
+* Pavan Kumar Jarmale (jarmale.pavan@gmail.com) 
 
