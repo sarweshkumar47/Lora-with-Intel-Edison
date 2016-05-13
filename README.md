@@ -33,9 +33,9 @@ The Mote includes light and temperature sensors, which can be transmitted either
 * [LoRa Mote - 2](http://www.microchip.com/DevelopmentTools/ProductDetails.aspx?PartNO=dm164138#utm_medium=Press-Release&utm_term=LoRa%20Certification%20&utm_content=WPD&utm_campaign=868MHz)
 
 ##Software
---> On Edison:
+* __On Edison:__
 
-* pySerial
+1. pySerial
 
 To install pySerial and its dependencies, execute install_serial.sh script
 
