@@ -35,9 +35,9 @@ The Mote includes light and temperature sensors, which can be transmitted either
 ##Software
 * __On Edison:__
 
-1. pySerial
+ 1. pySerial
 
-To install pySerial and its dependencies, execute install_serial.sh script
+ To install pySerial and its dependencies, execute install_serial.sh script
 
 ```bash
   ./install_serial.sh
